@@ -1,25 +1,25 @@
 import { useState } from 'react';
 
-export const AddCategory = () => {
-  const [inputValue, setInputValue] = useState('one punch');
+// eslint-disable-next-line react/prop-types
+export const AddCategory = ({ onNewCategory }) => {
+  const [inputValue, setInputValue] = useState('');
 
   const onInputChange = ({ target }) => {
-    setInputValue(target.vale);
+    setInputValue(target.value);
   };
 
   const onSubmit = event => {
     event.preventDefault();
-    console.log(inputValue);
+    if (inputValue.trim().length <= 1) return;
+
+    // setCategories( categories => [ inputValue, ...categories ]);
+    setInputValue('');
+    onNewCategory(inputValue.trim());
   };
 
   return (
-    <form onChange={event => onSubmit(event)}>
-      <input
-        type='text'
-        placeholder='Buscar Gifs'
-        value={inputValue}
-        onChange={event => onInputChange(event)}
-      ></input>
+    <form onSubmit={onSubmit}>
+      <input type='text' placeholder='Buscar gifs' value={inputValue} onChange={onInputChange} />
     </form>
   );
 };
