@@ -19,7 +19,7 @@ export const AddCategory = ({ onNewCategory }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input type='text' placeholder='Buscar gifs' value={inputValue} onChange={onInputChange} />
+      <input type='text' placeholder="Search gif's" value={inputValue} onChange={onInputChange} />
     </form>
   );
 };
